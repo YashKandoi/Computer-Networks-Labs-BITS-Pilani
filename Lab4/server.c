@@ -36,22 +36,27 @@ int main(void){
     printf("Binding successful\n");
 
     // Listening, no need to establish connection
-    char buf[BUFLEN];
     while(1){
-        printf("Waiting for data");
+        char buf[BUFLEN];
+        printf("Waiting for data! Guess the number\n");
         fflush(stdout);
 
+        // Code for generating a random number between 1 and 6
+        int n=rand()%6 +1;
         memset(buf,'\0',BUFLEN);
         // trying to receive data, this is a blocking call
         int recv_len=recvfrom(sock, buf, BUFLEN, 0, (struct sockaddr *) &si_other, &slen);
         if(recv_len<0){
             die("receiving");
         }
-
         //print details of the client/peer and the data received
         printf("Received packet from %s:%d\n", inet_ntoa(si_other.sin_addr),ntohs(si_other.sin_port));
         printf("Data: %s\n" , buf);
-
+        if(buf[0]-'0' == n)
+            strcpy(buf,"CorrectGuess");
+        else
+            strcpy(buf,"INCorrectGuess");
+        printf("The guess was:%d\n",n);
         // replying
         int reply_len=sendto(sock,buf, recv_len, 0, (struct sockaddr*) &si_other, sizeof(si_other));
         if(reply_len<0){

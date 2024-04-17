@@ -30,10 +30,10 @@ int main(void){
     si_other.sin_addr.s_addr=inet_addr("172.17.23.66");
 
     // sending and receiving messages
-    char buf[BUFLEN];
-    char message[BUFLEN];
     while(1){
-        printf("Enter message");
+        char buf[BUFLEN];
+        char message[BUFLEN];
+        printf("Enter message! Guess a number between 1 and 6: ");
         gets(message);
 
         // send the message

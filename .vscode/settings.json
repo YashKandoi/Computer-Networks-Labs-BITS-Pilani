@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "__config": "c"
+        "__config": "c",
+        "socket.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c"
     }
 }
