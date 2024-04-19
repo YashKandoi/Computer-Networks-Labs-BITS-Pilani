@@ -106,6 +106,7 @@ int main(void)
                 {
                     die("sendto");
                 }
+                break;
             }
 
         case 1:
@@ -138,6 +139,7 @@ int main(void)
                 {
                     die("sendto");
                 }
+                break;
             }
         }
     }
