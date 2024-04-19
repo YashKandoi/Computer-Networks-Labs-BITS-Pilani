@@ -23,7 +23,7 @@ int main()
 
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(12345);                    // port number can be changed here
-    serverAddr.sin_addr.s_addr = inet_addr("172.17.23.66"); // specify server IP addr here
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); // specify server IP addr here
     printf("Address assigned\n");
 
     // Establish Connection

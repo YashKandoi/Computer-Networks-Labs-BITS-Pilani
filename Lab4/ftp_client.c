@@ -34,7 +34,7 @@ int main(void){
     // initialize sockaddr in data structure
     serv_addr.sin_family=AF_INET;
     serv_addr.sin_port= htons(5001);
-    serv_addr.sin_addr.s_addr=inet_addr("172.17.23.66");
+    serv_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
 
     // attempt a connection
     if(connect(sockfd,(struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0){

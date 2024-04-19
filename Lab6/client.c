@@ -65,7 +65,7 @@ int main(void)
     memset((char *)&si_other, 0, sizeof(si_other));
     si_other.sin_family = AF_INET;
     si_other.sin_port = htons(PORT);
-    si_other.sin_addr.s_addr = inet_addr("172.17.23.66");
+    si_other.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     int state = 0;
     while (1)
