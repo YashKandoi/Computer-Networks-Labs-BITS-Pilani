@@ -127,9 +127,16 @@ int main(void)
                 // ACK 0 arrived, change state
                 printf("Received ack seq. no. %d\n", rcv_ack.sq_no);
                 state = 2;
-            }
-            else
                 break;
+            }
+            else{
+                printf("ack0 loss sending packet again\n");
+                if (sendto(s, &send_pkt, sizeof(send_pkt), 0, (struct sockaddr *)&si_other, slen) == -1)
+                {
+                    die("sendto()");
+                }
+                break;
+            }
         }
         case 2:
             printf("Enter message 1: "); // wait for sending packet with seq. no. 1
@@ -184,9 +191,16 @@ int main(void)
                 // ACK 1 arrived, change state
                 printf("Received ack seq. no. %d\n", rcv_ack.sq_no);
                 state = 0;
-            }
-            else
                 break;
+            }
+            else{
+                printf("ack1 loss sending packet again\n");
+                if (sendto(s, &send_pkt, sizeof(send_pkt), 0, (struct sockaddr *)&si_other, slen) == -1)
+                {
+                    die("sendto()");
+                }
+                break;
+            }
         }
         }
     }

@@ -97,15 +97,17 @@ int main(void)
                 state = 1;
                 break;
             }
-            else
-            {
-                // packet lost, send ACK 1, remain in same state
-                printf("Packet has been lost on the way\n");
-                ack_pkt.sq_no = 1;
+            else if(rcv_pkt.sq_no == 1){
+                // resend ack 1
+                printf("Resend Ack1\n");
                 if (sendto(s, &ack_pkt, sizeof(ack_pkt), 0, (struct sockaddr *)&si_other, slen) == -1)
                 {
                     die("sendto");
                 }
+                break;
+            }
+            else
+            {
                 break;
             }
 
@@ -130,15 +132,17 @@ int main(void)
                 state = 0;
                 break;
             }
-            else
-            {
-                // packet lost, send ACK 0, remain in same state
-                printf("Packet has been lost on the way\n");
-                ack_pkt.sq_no = 0;
+            else if(rcv_pkt.sq_no == 0){
+                // resend ack 1
+                printf("Resend Ack1\n");
                 if (sendto(s, &ack_pkt, sizeof(ack_pkt), 0, (struct sockaddr *)&si_other, slen) == -1)
                 {
                     die("sendto");
                 }
+                break;
+            }
+            else
+            {
                 break;
             }
         }
