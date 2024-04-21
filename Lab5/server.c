@@ -166,6 +166,7 @@ int main()
                     break;
 
                 case 'P':
+                    fseek(fp,0,SEEK_END);
                     printf("The operation is :%s\n", operation);
                     char *start = strchr(msg, ' ') + 1;
                     start = strchr(start, ' ') + 1;    
